@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدعم والمساعدة - طقس السعودية | Support - Saudi Weather</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.8;
+            background: linear-gradient(135deg, #fff3e0 0%, #ffcc80 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .lang-btn {
+            padding: 10px 30px;
+            border: 2px solid #FF9800;
+            background: white;
+            color: #FF9800;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #FF9800;
+            color: white;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            color: #F57C00;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            color: #F57C00;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: #FF9800;
+            border-radius: 2px;
+        }
+
+        .section p, .section li {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .section ul {
+            padding-right: 25px;
+            padding-left: 25px;
+        }
+
+        .faq-item {
+            background: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-right: 4px solid #FF9800;
+        }
+
+        [dir="ltr"] .faq-item {
+            border-right: none;
+            border-left: 4px solid #FF9800;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #F57C00;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+
+        .faq-answer {
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-right: 4px solid #FF9800;
+            border-left: 4px solid #FF9800;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            color: #e65100;
+            font-weight: 500;
+        }
+
+        .contact-box {
+            background: #FF9800;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .contact-box a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-box a:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .contact-box .response-time {
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        [dir="ltr"] .section h2::before {
+            order: -1;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.2em;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1 id="main-title">الدعم والمساعدة</h1>
+                <p id="app-name">تطبيق طقس السعودية</p>
+            </div>
+
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('ar')">العربية</button>
+                <button class="lang-btn" onclick="switchLang('en')">English</button>
+            </div>
+
+            <!-- Arabic Content -->
+            <div id="content-ar" class="content">
+                <div class="section">
+                    <h2>مرحباً بك</h2>
+                    <p>نحن هنا لمساعدتك في الاستفادة القصوى من تطبيق طقس السعودية. ستجد هنا إجابات للأسئلة الشائعة ومعلومات الاتصال للحصول على الدعم.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌡️</div>
+                            <h3>بيانات دقيقة</h3>
+                            <p>معلومات طقس محدثة من OpenWeatherMap</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏙️</div>
+                            <h3>50 مدينة</h3>
+                            <p>تغطية شاملة للمدن السعودية</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <h3>تحديث تلقائي</h3>
+                            <p>تحديث البيانات كل 30 دقيقة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>الأسئلة الشائعة</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">كيف أستعرض المدن؟</div>
+                        <div class="faq-answer">جميع المدن الـ 50 معروضة في قائمة على الشاشة الرئيسية. مرر للأعلى أو الأسفل لتصفح المدن. المدن المفضلة تظهر في الأعلى.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">كيف أضيف مدينة للمفضلة؟</div>
+                        <div class="faq-answer">اضغط على أيقونة النجمة بجانب أي مدينة لإضافتها للمفضلة. المدن المفضلة تظهر في بطاقة خاصة أعلى الشاشة للوصول السريع.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">متى يتم تحديث بيانات الطقس؟</div>
+                        <div class="faq-answer">يتم تحديث البيانات تلقائياً كل 30 دقيقة. يمكنك أيضاً السحب للأسفل لتحديث البيانات يدوياً في أي وقت.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">ما المعلومات المتاحة لكل مدينة؟</div>
+                        <div class="faq-answer">يعرض التطبيق: درجة الحرارة الحالية، الحرارة المحسوسة، أعلى وأدنى درجة، الرطوبة، سرعة الرياح، الضغط الجوي، ووصف حالة الطقس.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">كيف أغير وحدة قياس درجة الحرارة؟</div>
+                        <div class="faq-answer">اذهب للإعدادات واختر وحدة الحرارة المفضلة: مئوية (°C) أو فهرنهايت (°F).</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">كيف أغير لغة التطبيق؟</div>
+                        <div class="faq-answer">اذهب للإعدادات واختر اللغة المفضلة (العربية أو الإنجليزية). التطبيق يدعم كلا الاتجاهين.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">كيف أغير المظهر من فاتح إلى داكن؟</div>
+                        <div class="faq-answer">اذهب للإعدادات، ستجد خيار "المظهر" حيث يمكنك الاختيار بين الفاتح، الداكن، أو التلقائي حسب إعدادات النظام.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">هل يحتاج التطبيق للإنترنت؟</div>
+                        <div class="faq-answer">نعم، التطبيق يحتاج اتصال بالإنترنت لجلب بيانات الطقس المحدثة. بدون إنترنت، ستظهر آخر بيانات تم تحميلها.</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>المدن المدعومة</h2>
+                    <p>يدعم التطبيق 50 مدينة سعودية تشمل:</p>
+                    <ul>
+                        <li>الرياض، جدة، مكة المكرمة، المدينة المنورة</li>
+                        <li>الدمام، الخبر، الظهران، الأحساء</li>
+                        <li>أبها، الطائف، تبوك، حائل</li>
+                        <li>نجران، جازان، الباحة، بريدة</li>
+                        <li>والعديد من المدن الأخرى...</li>
+                    </ul>
+                </div>
+
+                <div class="contact-box">
+                    <h3>تواصل معنا</h3>
+                    <p>نحن هنا للمساعدة! لا تتردد في التواصل معنا</p>
+                    <a href="mailto:saudiweatherapp@gmail.com">saudiweatherapp@gmail.com</a>
+                    <p class="response-time">نرد عادة خلال 24-48 ساعة</p>
+                </div>
+            </div>
+
+            <!-- English Content -->
+            <div id="content-en" class="content hidden">
+                <div class="section">
+                    <h2>Welcome</h2>
+                    <p>We're here to help you get the most out of the Saudi Weather app. Find answers to common questions and contact information for support.</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌡️</div>
+                            <h3>Accurate Data</h3>
+                            <p>Updated weather info from OpenWeatherMap</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏙️</div>
+                            <h3>50 Cities</h3>
+                            <p>Comprehensive coverage of Saudi cities</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <h3>Auto Refresh</h3>
+                            <p>Data updates every 30 minutes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I browse cities?</div>
+                        <div class="faq-answer">All 50 cities are displayed in a list on the main screen. Scroll up or down to browse cities. Favorite cities appear at the top.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I add a city to favorites?</div>
+                        <div class="faq-answer">Tap the star icon next to any city to add it to favorites. Favorite cities appear in a special card at the top of the screen for quick access.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">When is the weather data updated?</div>
+                        <div class="faq-answer">Data is automatically updated every 30 minutes. You can also pull down to refresh the data manually at any time.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">What information is available for each city?</div>
+                        <div class="faq-answer">The app displays: current temperature, feels like temperature, high and low temperatures, humidity, wind speed, atmospheric pressure, and weather condition description.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I change the temperature unit?</div>
+                        <div class="faq-answer">Go to Settings and choose your preferred temperature unit: Celsius (°C) or Fahrenheit (°F).</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I change the app language?</div>
+                        <div class="faq-answer">Go to Settings and choose your preferred language (Arabic or English). The app supports both RTL and LTR directions.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do I change the theme from light to dark?</div>
+                        <div class="faq-answer">Go to Settings, you'll find the "Theme" option where you can choose between Light, Dark, or System default.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Does the app need internet?</div>
+                        <div class="faq-answer">Yes, the app requires an internet connection to fetch updated weather data. Without internet, the last loaded data will be displayed.</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>Supported Cities</h2>
+                    <p>The app supports 50 Saudi cities including:</p>
+                    <ul>
+                        <li>Riyadh, Jeddah, Makkah, Madinah</li>
+                        <li>Dammam, Khobar, Dhahran, Al-Ahsa</li>
+                        <li>Abha, Taif, Tabuk, Hail</li>
+                        <li>Najran, Jazan, Al-Baha, Buraidah</li>
+                        <li>And many more cities...</li>
+                    </ul>
+                </div>
+
+                <div class="contact-box">
+                    <h3>Contact Us</h3>
+                    <p>We're here to help! Don't hesitate to reach out</p>
+                    <a href="mailto:saudiweatherapp@gmail.com">saudiweatherapp@gmail.com</a>
+                    <p class="response-time">We usually respond within 24-48 hours</p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2026 Saudi Weather App. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLang(lang) {
+            const html = document.documentElement;
+            const arContent = document.getElementById('content-ar');
+            const enContent = document.getElementById('content-en');
+            const mainTitle = document.getElementById('main-title');
+            const appName = document.getElementById('app-name');
+            const buttons = document.querySelectorAll('.lang-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            if (lang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                arContent.classList.remove('hidden');
+                enContent.classList.add('hidden');
+                mainTitle.textContent = 'الدعم والمساعدة';
+                appName.textContent = 'تطبيق طقس السعودية';
+                buttons[0].classList.add('active');
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                arContent.classList.add('hidden');
+                enContent.classList.remove('hidden');
+                mainTitle.textContent = 'Support & Help';
+                appName.textContent = 'Saudi Weather App';
+                buttons[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
